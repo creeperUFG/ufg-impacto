@@ -1,5 +1,31 @@
-import React from 'react';
+import React from "react";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
-export default function Menu(){
-    
+import logo from "./../../assets/logo.svg";
+import imgMenu from "./../../assets/imgMenu.svg";
+
+import "./styles.css";
+
+export default function Menu() {
+  return (
+    <>
+      <Navbar bg="light" expand="lg">
+        <div className="img-menu">
+          <img width={300} src={imgMenu} alt="UFG Impacto" />
+        </div>
+        <Container>
+          <Navbar.Brand href="/">
+            <img width={120} src={logo} alt="UFG Impacto" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="Projects">Projetos</Nav.Link>
+              <Nav.Link href="Indicator">Indicadores</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
+  );
 }

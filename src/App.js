@@ -1,8 +1,13 @@
-import Routes from './routes';
+import React from "react";
+import "./App.scss";
+
+import Routes from "./routes";
 
 function App() {
   return (
-    <Routes/>
+    <div className="content">
+      <Routes />
+    </div>
   );
 }
 
