@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactLoading from "react-loading";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -15,7 +16,8 @@ import { Collapse } from "bootstrap";
 export default function SearchProjects({}) {
   const { state } = useLocation();
 
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState(state.keywords || "");
+  const [loading, setLoading] = useState(false);
 
   const [projects, setProjects] = useState([]);
 
@@ -25,6 +27,7 @@ export default function SearchProjects({}) {
 
   const _search = async (text) => {
     if (text) {
+      setLoading(true);
       text = text.toLowerCase(); // colaca a string em minusculo
       text = text.replace(/\./g, ""); // remove todos os pontos da string
 
@@ -43,6 +46,8 @@ export default function SearchProjects({}) {
       } catch (err) {
         console.log(err);
         setProjects([]);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -103,25 +108,32 @@ export default function SearchProjects({}) {
         </Col>
       </Row>
 
-      {projects.map((project, index) => (
-        <Row key={index}>
-          <Col md={1}>
-            <p>{project.idProjeto}</p>
-          </Col>
-          <Col>
-            <p>{project.titulo_projeto}</p>
-          </Col>
-          <Col>
-            <p>{project.coordenacao_projeto}</p>
-          </Col>
-          <Col>
-            <p>{project.nome_unidade_projeto}</p>
-          </Col>
-          <Col>
-            <p>{project.tipo_projeto}</p>
-          </Col>
-        </Row>
-      ))}
+      {loading && (
+        <div className="loading">
+          <ReactLoading type="bubbles" color="#49a7e2" height={100} />
+        </div>
+      )}
+
+      {!loading &&
+        projects.map((project, index) => (
+          <Row key={index}>
+            <Col md={1}>
+              <p>{project.idProjeto}</p>
+            </Col>
+            <Col>
+              <p>{project.titulo_projeto}</p>
+            </Col>
+            <Col>
+              <p>{project.coordenacao_projeto}</p>
+            </Col>
+            <Col>
+              <p>{project.nome_unidade_projeto}</p>
+            </Col>
+            <Col>
+              <p>{project.tipo_projeto}</p>
+            </Col>
+          </Row>
+        ))}
     </div>
   );
 }
