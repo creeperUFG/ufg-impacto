@@ -1,11 +1,12 @@
-.img-menu{
-  margin-top: -15px;
-}
-
 .nav-container{
-  padding-top: 50px;
+  padding-top: 60px;
 }
 
 .navbar{
   padding-top:0 !important;
+  margin-bottom: 6em;
+}
+
+.navbar .icon {
+   margin-right: 32px;
 }

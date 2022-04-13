@@ -9,13 +9,13 @@ import "./styles.css";
 export default function Menu() {
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar expand="lg">
         <div className="img-menu">
-          <img width={300} src={imgMenu} alt="UFG Impacto" />
+          <img width={500} src={imgMenu} alt="UFG Impacto" />
         </div>
         <Container>
           <Navbar.Brand href="/">
-            <img width={120} src={logo} alt="UFG Impacto" />
+            <img className="icon" width={150} src={logo} alt="UFG Impacto" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

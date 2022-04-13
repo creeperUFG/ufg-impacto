@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactWordcloud from "react-wordcloud";
 import { Col, Row } from "react-bootstrap";
 
 import "./styles.css";
@@ -11,6 +12,15 @@ export default function Projects() {
 
     alert(search);
   };
+
+  const words = [{
+    text: 'told',
+    value: 64,
+  },
+  {
+    text: 'mistake',
+    value: 70,
+  }]
 
   return (
     <div className="projects-content">
@@ -35,6 +45,11 @@ export default function Projects() {
           </form>
         </Col>
       </Row>
+
+      <div className="titulo">
+        <h3>Ensino</h3>
+      </div>
+      <ReactWordcloud words={words} />
     </div>
   );
 }
