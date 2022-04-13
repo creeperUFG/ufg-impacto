@@ -131,7 +131,6 @@ export default function CourseIndicators() {
               disablePortal
               id="combo-box-demo"
               options={courses}
-              sx={{ width: 300 }}
               onChange={(event, value) => setCourse(value)}
               renderInput={(params) => (
                 <TextField
