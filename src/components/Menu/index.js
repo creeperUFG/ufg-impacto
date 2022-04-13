@@ -20,8 +20,11 @@ export default function Menu() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="Projects">Projetos</Nav.Link>
-              <Nav.Link href="Indicator">Indicadores</Nav.Link>
+              <Nav.Link href="/projects">Projetos</Nav.Link>
+              <Nav.Link href="/indicators/course">
+                Indicadores do curso
+              </Nav.Link>
+              <Nav.Link href="/indicators/class">Indicadores da turma</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

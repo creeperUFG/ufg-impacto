@@ -11,18 +11,17 @@ import { Col, Row } from "react-bootstrap";
 
 import "./styles.css";
 import api, { projectsURL } from "../../services/api";
-import { Collapse } from "bootstrap";
 
 export default function SearchProjects({}) {
   const { state } = useLocation();
 
-  const [searchText, setSearchText] = useState(state.keywords || "");
+  const [searchText, setSearchText] = useState(state ? state.keywords : "");
   const [loading, setLoading] = useState(false);
 
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    _search(state.keywords);
+    _search("projeto");
   }, []);
 
   const _search = async (text) => {

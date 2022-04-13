@@ -3,11 +3,6 @@ import axios from "axios";
 export const projectsURL = "http://localhost:3344/university";
 export const studentsURL = "http://localhost:3333/university";
 
-let axiosApiServer = axios.create({
-  baseURL: "http://localhost:3333/university", // baseURL inicial
-  timeout: 15000,
-});
-
 const api = (baseURL) => {
   if (baseURL) {
     // Criamos uma nova instância apenas se foi passado uma nova baseURL

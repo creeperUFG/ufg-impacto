@@ -4,6 +4,7 @@ import Menu from "./components/Menu";
 
 import Projects from "./pages/Projects";
 import SearchProjects from "./pages/SearchProjects";
+import CourseIndicators from "./pages/CourseIndicators";
 
 export default function Routes() {
   return (
@@ -13,6 +14,7 @@ export default function Routes() {
         <Route path="/" exact component={Projects} />
         <Route path="/projects" exact component={Projects} />
         <Route path="/projects/search" exact component={SearchProjects} />
+        <Route path="/indicators/course" exact component={CourseIndicators} />
       </Switch>
     </BrowserRouter>
   );

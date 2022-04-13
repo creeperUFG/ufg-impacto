@@ -1,0 +1,60 @@
+.indicators-content{
+  margin-top: 40px !important;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-bottom: 80px;
+}
+
+.indicators-content p{
+  margin-bottom: 0;
+}
+
+.indicators-content p strong{
+  color: #49a7e2;
+}
+
+.active-students{
+  /* width: auto !important; */
+}
+
+.title{
+  font-size: 24px;
+  text-align: center;
+  color: #707071;
+}
+
+.indicator-number{
+  text-align: center;
+  font-size: 24px;
+}
+
+.indicator-normal-number{
+  color: #49a7e2 !important;
+}
+
+.indicator-positive-number{
+  color: #228B22 !important;
+}
+
+.indicator-negative-number{
+  color: #DC143C !important;
+}
+
+.graph-content{
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph{
+  max-width: 600px;
+}
+
+
+.loading{
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
