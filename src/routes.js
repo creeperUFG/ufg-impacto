@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 
 import Projects from "./pages/Projects";
+import SearchProjects from "./pages/SearchProjects";
 
 export default function Routes() {
   return (
@@ -10,7 +11,8 @@ export default function Routes() {
       <Menu />
       <Switch>
         <Route path="/" exact component={Projects} />
-        <Route path="/Projects" exact component={Projects} />
+        <Route path="/projects" exact component={Projects} />
+        <Route path="/projects/search" exact component={SearchProjects} />
       </Switch>
     </BrowserRouter>
   );
