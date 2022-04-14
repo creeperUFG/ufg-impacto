@@ -21,10 +21,10 @@ export default function SearchProjects({}) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    _search("projeto");
+    _search(state ? state.keywords : "", state ? state.projectType : "");
   }, []);
 
-  const _search = async (text) => {
+  const _search = async (text, projectType = "") => {
     if (text) {
       setLoading(true);
       text = text.toLowerCase(); // colaca a string em minusculo
@@ -36,9 +36,12 @@ export default function SearchProjects({}) {
       const keywords = text.split(" "); // criação do array de keywords
 
       try {
-        const response = await api(projectsURL).post(`/projects`, {
-          keywords,
-        });
+        const response = await api(projectsURL).post(
+          `/projects/${projectType}`,
+          {
+            keywords,
+          }
+        );
 
         setProjects(response.data.projects);
         console.log(response.data.projects);

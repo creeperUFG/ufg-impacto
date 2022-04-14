@@ -10,7 +10,6 @@ const api = (baseURL) => {
 
     let axiosAppServer = axios.create({
       baseURL,
-      timeout: 15000, // Não esqueça de passar as outras opções
     });
 
     return axiosAppServer;

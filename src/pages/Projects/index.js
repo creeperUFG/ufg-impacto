@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactWordcloud from "react-wordcloud";
+import ReactLoading from "react-loading";
 import { Col, Row } from "react-bootstrap";
 
 import "./styles.css";
@@ -11,6 +12,10 @@ export default function Projects({ history }) {
   const [teachingWords, setTeachingWords] = useState([]);
   const [researchWords, setResearchWords] = useState([]);
   const [extensionWords, setExtensionWords] = useState([]);
+
+  const [teachingLoading, setTeachingLoading] = useState(false);
+  const [researchLoading, setResearchLoading] = useState(false);
+  const [extensionLoading, setExtensionLoading] = useState(false);
 
   const _search = (event) => {
     event.preventDefault();
@@ -34,6 +39,7 @@ export default function Projects({ history }) {
   useEffect(() => {
     const getTeachingWords = async () => {
       try {
+        setTeachingLoading(true);
         const response = await api(projectsURL).get(
           `/projects/teaching/wordcloud`
         );
@@ -42,6 +48,8 @@ export default function Projects({ history }) {
       } catch (err) {
         console.log(err);
         setTeachingWords([]);
+      } finally {
+        setTeachingLoading(false);
       }
     };
 
@@ -64,14 +72,16 @@ export default function Projects({ history }) {
   useEffect(() => {
     const getResearchWords = async () => {
       try {
+        setResearchLoading(true);
         const response = await api(projectsURL).get(
           `/projects/research/wordcloud`
         );
-
         setResearchWords(response.data.words);
       } catch (err) {
         console.log(err);
         setResearchWords([]);
+      } finally {
+        setResearchLoading(false);
       }
     };
 
@@ -84,7 +94,7 @@ export default function Projects({ history }) {
         pathname: "/projects/search",
         state: {
           keywords: word.text,
-          projectType: "teaching",
+          projectType: "research",
         },
       });
     },
@@ -94,14 +104,17 @@ export default function Projects({ history }) {
   useEffect(() => {
     const getExtensionWords = async () => {
       try {
+        setExtensionLoading(true);
         const response = await api(projectsURL).get(
-          `/projects/teaching/wordcloud`
+          `/projects/extension/wordcloud`
         );
 
         setExtensionWords(response.data.words);
       } catch (err) {
         console.log(err);
         setExtensionWords([]);
+      } finally {
+        setExtensionLoading(false);
       }
     };
 
@@ -114,7 +127,7 @@ export default function Projects({ history }) {
         pathname: "/projects/search",
         state: {
           keywords: word.text,
-          projectType: "teaching",
+          projectType: "extension",
         },
       });
     },
@@ -148,33 +161,55 @@ export default function Projects({ history }) {
         <div className="titulo">
           <h3>Ensino</h3>
         </div>
-        <ReactWordcloud
-          words={teachingWords}
-          options={options}
-          callbacks={teachingCallbacks}
-        />
+        {teachingLoading && (
+          <div className="loading">
+            <ReactLoading type="bubbles" color="#49a7e2" height={100} />
+          </div>
+        )}
+        {!teachingLoading && (
+          <ReactWordcloud
+            words={teachingWords}
+            options={options}
+            callbacks={teachingCallbacks}
+          />
+        )}
       </div>
-      
+
       <div className="wordcloud-container">
         <div className="titulo">
           <h3>Pesquisa</h3>
         </div>
-        <ReactWordcloud
-          words={researchWords}
-          options={options}
-          callbacks={searchingCallbacks}
-        />
+        {researchLoading && (
+          <div className="loading">
+            <ReactLoading type="bubbles" color="#49a7e2" height={100} />
+          </div>
+        )}
+        {!researchLoading && (
+          <ReactWordcloud
+            words={researchWords}
+            options={options}
+            callbacks={searchingCallbacks}
+          />
+        )}
       </div>
 
       <div className="wordcloud-container">
         <div className="titulo">
           <h3>Extensão</h3>
         </div>
-        <ReactWordcloud
-          words={extensionWords}
-          options={options}
-          callbacks={extensionCallbacks}
-        />
+        {extensionLoading && (
+          <div className="loading">
+            <ReactLoading type="bubbles" color="#49a7e2" height={100} />
+          </div>
+        )}
+
+        {!extensionLoading && (
+          <ReactWordcloud
+            words={extensionWords}
+            options={options}
+            callbacks={extensionCallbacks}
+          />
+        )}
       </div>
     </div>
   );
