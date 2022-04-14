@@ -11,7 +11,7 @@ export default function Menu() {
     <>
       <Navbar expand="lg">
         <div className="img-menu">
-          <img width={500} src={imgMenu} alt="UFG Impacto" />
+          <img width={260} src={imgMenu} alt="UFG Impacto" />
         </div>
         <Container>
           <Navbar.Brand href="/">
