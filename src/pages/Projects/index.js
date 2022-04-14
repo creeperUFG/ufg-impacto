@@ -30,18 +30,7 @@ export default function Projects({ history }) {
     transitionDuration: 1000,
   };
 
-  const callbacks = {
-    onWordClick: (word) => {
-      history.push({
-        pathname: "/projects/search",
-        state: {
-          keywords: word.text,
-          projectType: "teaching",
-        },
-      });
-    },
-  };
-
+  /* ENSINO */
   useEffect(() => {
     const getTeachingWords = async () => {
       try {
@@ -58,6 +47,78 @@ export default function Projects({ history }) {
 
     getTeachingWords();
   }, []);
+
+  const teachingCallbacks = {
+    onWordClick: (word) => {
+      history.push({
+        pathname: "/projects/search",
+        state: {
+          keywords: word.text,
+          projectType: "teaching",
+        },
+      });
+    },
+  };
+
+  /* PESQUISA */
+  useEffect(() => {
+    const getResearchWords = async () => {
+      try {
+        const response = await api(projectsURL).get(
+          `/projects/research/wordcloud`
+        );
+
+        setResearchWords(response.data.words);
+      } catch (err) {
+        console.log(err);
+        setResearchWords([]);
+      }
+    };
+
+    getResearchWords();
+  }, []);
+
+  const searchingCallbacks = {
+    onWordClick: (word) => {
+      history.push({
+        pathname: "/projects/search",
+        state: {
+          keywords: word.text,
+          projectType: "teaching",
+        },
+      });
+    },
+  };
+
+  /* EXTENSÃO */
+  useEffect(() => {
+    const getExtensionWords = async () => {
+      try {
+        const response = await api(projectsURL).get(
+          `/projects/teaching/wordcloud`
+        );
+
+        setExtensionWords(response.data.words);
+      } catch (err) {
+        console.log(err);
+        setExtensionWords([]);
+      }
+    };
+
+    getExtensionWords();
+  }, []);
+
+  const extensionCallbacks = {
+    onWordClick: (word) => {
+      history.push({
+        pathname: "/projects/search",
+        state: {
+          keywords: word.text,
+          projectType: "teaching",
+        },
+      });
+    },
+  };
 
   return (
     <div className="projects-content">
@@ -83,7 +144,6 @@ export default function Projects({ history }) {
         </Col>
       </Row>
 
-      {/* Projetos de Ensino */}
       <div className="wordcloud-container">
         <div className="titulo">
           <h3>Ensino</h3>
@@ -91,7 +151,29 @@ export default function Projects({ history }) {
         <ReactWordcloud
           words={teachingWords}
           options={options}
-          callbacks={callbacks}
+          callbacks={teachingCallbacks}
+        />
+      </div>
+      
+      <div className="wordcloud-container">
+        <div className="titulo">
+          <h3>Pesquisa</h3>
+        </div>
+        <ReactWordcloud
+          words={researchWords}
+          options={options}
+          callbacks={searchingCallbacks}
+        />
+      </div>
+
+      <div className="wordcloud-container">
+        <div className="titulo">
+          <h3>Extensão</h3>
+        </div>
+        <ReactWordcloud
+          words={extensionWords}
+          options={options}
+          callbacks={extensionCallbacks}
         />
       </div>
     </div>
