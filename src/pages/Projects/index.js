@@ -6,7 +6,7 @@ import "./styles.css";
 
 import api, { projectsURL } from "../../services/api";
 
-export default function Projects() {
+export default function Projects({ history }) {
   const [search, setSearch] = useState("");
   const [teachingWords, setTeachingWords] = useState([]);
   const [researchWords, setResearchWords] = useState([]);
@@ -21,25 +21,39 @@ export default function Projects() {
   const options = {
     colors: ["#06A7E2", "#4CBEE8", "#07A8E3", "#215263", "#0582B0"],
     font: "Inter",
-    fontSizes: [18, 42],
+    fontSizes: [20, 84],
     padding: 1,
     rotations: 3,
     rotationsAngles: [0, 90],
     scale: "sqrt",
     spiral: "archimedean",
-    transitionDuration: 1000
-  }
+    transitionDuration: 1000,
+  };
+
+  const callbacks = {
+    onWordClick: (word) => {
+      history.push({
+        pathname: "/projects/search",
+        state: {
+          keywords: word.text,
+          projectType: "teaching",
+        },
+      });
+    },
+  };
 
   useEffect(() => {
     const getTeachingWords = async () => {
       try {
-        const response = await api(projectsURL).get(`/projects/teaching/wordcloud`);
+        const response = await api(projectsURL).get(
+          `/projects/teaching/wordcloud`
+        );
 
         setTeachingWords(response.data.words);
       } catch (err) {
         console.log(err);
         setTeachingWords([]);
-      } 
+      }
     };
 
     getTeachingWords();
@@ -74,10 +88,12 @@ export default function Projects() {
         <div className="titulo">
           <h3>Ensino</h3>
         </div>
-        <ReactWordcloud words={teachingWords} />
+        <ReactWordcloud
+          words={teachingWords}
+          options={options}
+          callbacks={callbacks}
+        />
       </div>
-      
-      
     </div>
   );
 }
