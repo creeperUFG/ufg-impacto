@@ -42,6 +42,7 @@ export default function Projects({ history }) {
     },
   };
 
+  /* ENSINO */
   useEffect(() => {
     const getTeachingWords = async () => {
       try {
@@ -57,6 +58,42 @@ export default function Projects({ history }) {
     };
 
     getTeachingWords();
+  }, []);
+
+  /* PESQUISA */
+  useEffect(() => {
+    const getResearchWords = async () => {
+      try {
+        const response = await api(projectsURL).get(
+          `/projects/research/wordcloud`
+        );
+
+        setResearchWords(response.data.words);
+      } catch (err) {
+        console.log(err);
+        setResearchWords([]);
+      }
+    };
+
+    getResearchWords();
+  }, []);
+
+  /* EXTENSÃO */
+  useEffect(() => {
+    const getExtensionWords = async () => {
+      try {
+        const response = await api(projectsURL).get(
+          `/projects/teaching/wordcloud`
+        );
+
+        setExtensionWords(response.data.words);
+      } catch (err) {
+        console.log(err);
+        setExtensionWords([]);
+      }
+    };
+
+    getExtensionWords();
   }, []);
 
   return (
@@ -83,13 +120,34 @@ export default function Projects({ history }) {
         </Col>
       </Row>
 
-      {/* Projetos de Ensino */}
       <div className="wordcloud-container">
         <div className="titulo">
           <h3>Ensino</h3>
         </div>
         <ReactWordcloud
           words={teachingWords}
+          options={options}
+          callbacks={callbacks}
+        />
+      </div>
+      
+      <div className="wordcloud-container">
+        <div className="titulo">
+          <h3>Pesquisa</h3>
+        </div>
+        <ReactWordcloud
+          words={researchWords}
+          options={options}
+          callbacks={callbacks}
+        />
+      </div>
+
+      <div className="wordcloud-container">
+        <div className="titulo">
+          <h3>Extensão</h3>
+        </div>
+        <ReactWordcloud
+          words={extensionWords}
           options={options}
           callbacks={callbacks}
         />
