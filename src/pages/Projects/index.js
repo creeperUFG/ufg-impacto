@@ -30,18 +30,6 @@ export default function Projects({ history }) {
     transitionDuration: 1000,
   };
 
-  const callbacks = {
-    onWordClick: (word) => {
-      history.push({
-        pathname: "/projects/search",
-        state: {
-          keywords: word.text,
-          projectType: "teaching",
-        },
-      });
-    },
-  };
-
   /* ENSINO */
   useEffect(() => {
     const getTeachingWords = async () => {
@@ -59,6 +47,18 @@ export default function Projects({ history }) {
 
     getTeachingWords();
   }, []);
+
+  const teachingCallbacks = {
+    onWordClick: (word) => {
+      history.push({
+        pathname: "/projects/search",
+        state: {
+          keywords: word.text,
+          projectType: "teaching",
+        },
+      });
+    },
+  };
 
   /* PESQUISA */
   useEffect(() => {
@@ -78,6 +78,18 @@ export default function Projects({ history }) {
     getResearchWords();
   }, []);
 
+  const searchingCallbacks = {
+    onWordClick: (word) => {
+      history.push({
+        pathname: "/projects/search",
+        state: {
+          keywords: word.text,
+          projectType: "teaching",
+        },
+      });
+    },
+  };
+
   /* EXTENSÃO */
   useEffect(() => {
     const getExtensionWords = async () => {
@@ -95,6 +107,18 @@ export default function Projects({ history }) {
 
     getExtensionWords();
   }, []);
+
+  const extensionCallbacks = {
+    onWordClick: (word) => {
+      history.push({
+        pathname: "/projects/search",
+        state: {
+          keywords: word.text,
+          projectType: "teaching",
+        },
+      });
+    },
+  };
 
   return (
     <div className="projects-content">
@@ -127,7 +151,7 @@ export default function Projects({ history }) {
         <ReactWordcloud
           words={teachingWords}
           options={options}
-          callbacks={callbacks}
+          callbacks={teachingCallbacks}
         />
       </div>
       
@@ -138,7 +162,7 @@ export default function Projects({ history }) {
         <ReactWordcloud
           words={researchWords}
           options={options}
-          callbacks={callbacks}
+          callbacks={searchingCallbacks}
         />
       </div>
 
@@ -149,7 +173,7 @@ export default function Projects({ history }) {
         <ReactWordcloud
           words={extensionWords}
           options={options}
-          callbacks={callbacks}
+          callbacks={extensionCallbacks}
         />
       </div>
     </div>
