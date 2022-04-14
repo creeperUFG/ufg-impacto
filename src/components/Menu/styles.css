@@ -14,3 +14,7 @@
 .navbar .nav-link {
   padding: 0 18px !important;
 }
+
+.img-menu img{
+  margin-top: -5px;
+}
