@@ -7,7 +7,7 @@ import "./styles.css";
 
 import api, { projectsURL } from "../../services/api";
 
-import {IoSearchOutline} from 'react-icons/io5';
+import { IoSearchOutline } from "react-icons/io5";
 
 export default function Projects({ history }) {
   const [search, setSearch] = useState("");
@@ -159,10 +159,7 @@ export default function Projects({ history }) {
               placeholder="pesquise por um projeto..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-            />    
-            <button onClick={_search} type="button">
-              <IoSearchOutline size={18} color="#06A7E2" />
-            </button>        
+            />
           </form>
         </Col>
       </Row>

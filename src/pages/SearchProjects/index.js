@@ -9,7 +9,7 @@ import {
 
 import { Col, Row } from "react-bootstrap";
 
-import {IoSearchOutline} from 'react-icons/io5';
+import { IoSearchOutline } from "react-icons/io5";
 
 import "./styles.css";
 import api, { projectsURL } from "../../services/api";
@@ -80,10 +80,7 @@ export default function SearchProjects({}) {
               placeholder="pesquise por um projeto..."
               value={searchText}
               onChange={(event) => setSearchText(event.target.value)}
-            />    
-            <button onClick={_newSearch} type="button">
-              <IoSearchOutline size={18} color="#06A7E2" />
-            </button>
+            />
           </form>
         </Col>
       </Row>
