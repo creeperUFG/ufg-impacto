@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactWordcloud from "react-wordcloud";
 import { Col, Row } from "react-bootstrap";
 
 import "./styles.css";
 
+import api, { projectsURL } from "../../services/api";
+
 export default function Projects() {
   const [search, setSearch] = useState("");
+  const [teachingWords, setTeachingWords] = useState([]);
+  const [researchWords, setResearchWords] = useState([]);
+  const [extensionWords, setExtensionWords] = useState([]);
 
   const _search = (event) => {
     event.preventDefault();
@@ -13,14 +18,32 @@ export default function Projects() {
     alert(search);
   };
 
-  const words = [{
-    text: 'told',
-    value: 64,
-  },
-  {
-    text: 'mistake',
-    value: 70,
-  }]
+  const options = {
+    colors: ["#06A7E2", "#4CBEE8", "#07A8E3", "#215263", "#0582B0"],
+    font: "Inter",
+    fontSizes: [18, 42],
+    padding: 1,
+    rotations: 3,
+    rotationsAngles: [0, 90],
+    scale: "sqrt",
+    spiral: "archimedean",
+    transitionDuration: 1000
+  }
+
+  useEffect(() => {
+    const getTeachingWords = async () => {
+      try {
+        const response = await api(projectsURL).get(`/projects/teaching/wordcloud`);
+
+        setTeachingWords(response.data.words);
+      } catch (err) {
+        console.log(err);
+        setTeachingWords([]);
+      } 
+    };
+
+    getTeachingWords();
+  }, []);
 
   return (
     <div className="projects-content">
@@ -46,10 +69,15 @@ export default function Projects() {
         </Col>
       </Row>
 
-      <div className="titulo">
-        <h3>Ensino</h3>
+      {/* Projetos de Ensino */}
+      <div className="wordcloud-container">
+        <div className="titulo">
+          <h3>Ensino</h3>
+        </div>
+        <ReactWordcloud words={teachingWords} />
       </div>
-      <ReactWordcloud words={words} />
+      
+      
     </div>
   );
 }
