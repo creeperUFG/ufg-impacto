@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const projectsURL =
-  "https://ufg-impacto-projects-service.herokuapp.com/";
+  "https://ufg-impacto-projects-service.herokuapp.com/university";
 export const studentsURL =
-  "https://ufg-impacto-students-service.herokuapp.com/";
+  "https://ufg-impacto-students-service.herokuapp.com/university";
 
 const api = (baseURL) => {
   if (baseURL) {
