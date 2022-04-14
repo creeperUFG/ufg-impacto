@@ -1,12 +1,16 @@
-.nav-container{
+.nav-container {
   padding-top: 60px;
 }
 
-.navbar{
-  padding-top:0 !important;
+.navbar {
+  padding-top: 0 !important;
   margin-bottom: 6em;
 }
 
 .navbar .icon {
-   margin-right: 32px;
+  margin-right: 32px;
+}
+
+.navbar .nav-link {
+  padding: 0 18px !important;
 }
