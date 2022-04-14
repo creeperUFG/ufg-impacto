@@ -7,6 +7,8 @@ import "./styles.css";
 
 import api, { projectsURL } from "../../services/api";
 
+import {IoSearchOutline} from 'react-icons/io5';
+
 export default function Projects({ history }) {
   const [search, setSearch] = useState("");
   const [teachingWords, setTeachingWords] = useState([]);
@@ -20,7 +22,12 @@ export default function Projects({ history }) {
   const _search = (event) => {
     event.preventDefault();
 
-    alert(search);
+    history.push({
+      pathname: "/projects/search",
+      state: {
+        keywords: search,
+      },
+    });
   };
 
   const options = {
@@ -152,7 +159,10 @@ export default function Projects({ history }) {
               placeholder="pesquise por um projeto..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-            />
+            />    
+            <button onClick={_search} type="button">
+              <IoSearchOutline size={18} color="#06A7E2" />
+            </button>        
           </form>
         </Col>
       </Row>

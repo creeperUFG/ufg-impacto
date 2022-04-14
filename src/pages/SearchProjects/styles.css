@@ -1,18 +1,18 @@
-.projects-content{
+.projects-content {
   margin-top: 40px !important;
   margin-left: 30px;
   margin-right: 30px;
 }
 
-.projects-content p{
+.projects-content p {
   margin-bottom: 0;
 }
 
-.projects-content p strong{
+.projects-content p strong {
   color: #49a7e2;
 }
 
-.projects-content form input{
+.projects-content form input {
   margin-bottom: 20px;
   background-color: #ECECEC;
   border: 1px solid #DDD;
@@ -23,11 +23,11 @@
   font-size: 16px;
 }
 
-.projects{
+.projects {
   margin-top: 40px !important;
 }
 
-.loading{
+.loading {
   margin-top: 100px;
   display: flex;
   align-items: center;

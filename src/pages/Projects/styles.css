@@ -24,17 +24,17 @@
 }
 
 .projects-content .wordcloud-container {
-  margin: 3.2em 0;
+  margin: 3.2em 0 4.8em 0;
 }
 
 .projects-content .wordcloud-container .titulo {
-  margin-bottom: 84px;
+  margin-bottom: 72px;
   display: flex;
 }
 
 .projects-content .wordcloud-container .titulo h3 {
   border-bottom: 2px solid #056284;
   width: 130px;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
 }
